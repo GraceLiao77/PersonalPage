@@ -2,23 +2,57 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Project Overview
+## Stack
 
-A static personal portfolio website — no build step, no dependencies, no package manager. Open `index.html` directly in a browser to preview.
+React + TypeScript, bundled with Vite.
+
+## Commands
+
+```bash
+npm run dev      # start dev server with HMR
+npm run build    # type-check + production build → dist/
+npm run preview  # locally preview the production build
+```
 
 ## Architecture
 
-Single-page site with three files:
+Single-page portfolio. All source lives in `src/`.
 
-- **`index.html`** — All content and structure. Sections in order: Nav, Hero, About, Projects, Contact, Footer. Each section uses `id` attributes (`#hero`, `#about`, `#projects`, `#contact`) for anchor navigation.
-- **`style.css`** — Dark-theme design system using CSS custom properties defined in `:root`. Key tokens: `--bg/--bg2/--bg3` (layered backgrounds), `--accent` (purple `#6c63ff`), `--accent2` (violet), `--muted` (secondary text), `--mono` (JetBrains Mono for labels/tags/logo). The `.fade-in` / `.fade-in.visible` classes are applied by JS.
-- **`script.js`** — Three behaviors: smooth scroll for `a[href^="#"]` links, `IntersectionObserver`-based fade-in on scroll for cards/titles, and nav active-link highlighting on scroll.
+```
+src/
+  main.tsx              — Vite entry, mounts <App /> into #root
+  App.tsx               — composes all sections in order
+  index.css             — global styles (dark theme, CSS custom properties)
+  hooks/
+    useFadeIn.ts        — IntersectionObserver hook; adds fade-in/visible classes on scroll
+  components/
+    Nav.tsx             — fixed nav with scroll-based active link highlighting
+    Hero.tsx
+    About.tsx
+    Projects.tsx
+    Contact.tsx
+    Footer.tsx
+```
 
-## Design Conventions
+Google Fonts (`Inter`, `JetBrains Mono`) are loaded via `<link>` tags in the root `index.html`.
 
-- Fonts loaded from Google Fonts: `Inter` (body) and `JetBrains Mono` (accents, tags, logo).
-- All interactive elements use `transition: all 0.2s` and `translateY(-2px)` hover lifts.
-- Project cards support a `.featured` modifier that adds a gradient background and `.featured-badge` label.
-- Responsive breakpoint at `768px` — hero flips to column-reverse, grids collapse to single column.
-- To add a new project: copy a `.project-card` div in `index.html`; update icon, title, description, tags, and `href` links.
-- To add a skill tag: add a `<span class="skill-tag">...</span>` inside `.skills` in the About section.
+## Design System
+
+CSS custom properties defined in `:root` in `src/index.css`:
+
+- `--bg / --bg2 / --bg3` — layered dark backgrounds
+- `--accent` (`#6c63ff`) / `--accent2` (violet) — primary brand colors
+- `--muted` — secondary text
+- `--mono` — JetBrains Mono, used for labels, tags, and the nav logo
+
+Interactive elements use `transition: all 0.2s` and `translateY(-2px)` hover lifts consistently.
+
+## Scroll Animations
+
+`useFadeIn.ts` attaches an `IntersectionObserver` (threshold `0.12`) to elements matching `.project-card, .info-card, .contact-card, .section-title, .about-text p`. Call it inside any component that contains those elements.
+
+## Adding Content
+
+- **New project card:** add a new `<div className="project-card">` block in `Projects.tsx`. Use `.featured` modifier + `<div className="featured-badge">Featured</div>` to highlight one.
+- **New skill tag:** add `<span className="skill-tag">...</span>` inside `.skills` in `About.tsx`.
+- **New contact link:** add a `<a className="contact-card">` in `Contact.tsx`.
