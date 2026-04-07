@@ -23,8 +23,11 @@ export default function Projects() {
         <h3 className="section-label">Projects</h3>
         <h2 className="section-title">Things I've built</h2>
         <div className="projects-grid">
-
           <div className="project-card">
+            coming soon...
+          </div>
+
+          {/* <div className="project-card">
             <div className="project-header">
               <span className="project-icon">🤖</span>
               <div className="project-links">
@@ -82,7 +85,7 @@ export default function Projects() {
             <div className="project-tags">
               <span>React</span><span>Node.js</span><span>WebSockets</span><span>MongoDB</span>
             </div>
-          </div>
+          </div> */}
 
         </div>
       </div>

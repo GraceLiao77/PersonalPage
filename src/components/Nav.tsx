@@ -9,12 +9,15 @@ export default function Nav() {
     if (!ul) return
 
     const navLinks = ul.querySelectorAll<HTMLAnchorElement>('a')
+    let activeSectionId = ''
 
     const handleScroll = () => {
       let current = ''
       sections.forEach((sec) => {
         if (window.scrollY >= sec.offsetTop - 100) current = sec.id
       })
+      if (current === activeSectionId) return
+      activeSectionId = current
       navLinks.forEach((link) => {
         link.style.color =
           link.getAttribute('href') === `#${current}` ? 'var(--text)' : ''
