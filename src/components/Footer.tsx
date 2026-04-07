@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer>
-      <p>Built with care by Jin &mdash; 2026</p>
+      <p>Designed and developed by Grace &mdash; 2020 - 2026</p>
     </footer>
   )
 }

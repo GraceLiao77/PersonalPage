@@ -28,7 +28,7 @@ export default function Nav() {
   return (
     <nav>
       <div className="nav-inner">
-        <span className="nav-logo">jin.</span>
+        <span className="nav-logo">Grace.</span>
         <ul ref={linksRef}>
           <li><a href="#about">About</a></li>
           <li><a href="#projects">Projects</a></li>

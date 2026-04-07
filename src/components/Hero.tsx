@@ -4,7 +4,7 @@ export default function Hero() {
       <div className="hero-inner">
         <div className="hero-text">
           <p className="greeting">Hi, I'm</p>
-          <h1>Jin</h1>
+          <h1>Grace</h1>
           <h2 className="subtitle">Software Engineer &amp; Builder</h2>
           <p className="bio">
             I craft fast, thoughtful software — from sleek frontends to robust backends.
