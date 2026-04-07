@@ -11,23 +11,37 @@ export default function About() {
         <div className="about-grid">
           <div className="about-text">
             <p>
-              I'm a software engineer with a love for building things that matter.
-              I enjoy working across the full stack — designing interfaces that feel natural
-              and architecting systems that scale.
+              I'm a Master of Engineering student at the University of Auckland
+              and a former front-end engineer at TikTok, where I spent four years
+              building large-scale e-commerce and data platforms.
             </p>
             <p>
-              When I'm not coding, you'll find me exploring new tech, reading, or hunting
-              for the perfect cup of coffee.
+              My work ranged from shipping merchant-facing features and optimising
+              bundle performance to leading Monorepo migrations and mentoring junior
+              engineers through code reviews and knowledge-sharing sessions.
+            </p>
+            <p>
+              I enjoy working at the intersection of clean architecture and great UX —
+              writing code that's fast, maintainable, and a pleasure to read.
+            </p>
+            <p style={{ marginTop: '1.5rem', marginBottom: '0.4rem', fontSize: '0.9rem', color: 'var(--accent)', fontStyle: 'italic' }}>
+              ↓ tools I reach for
             </p>
             <div className="skills">
-              <span className="skill-tag">TypeScript</span>
               <span className="skill-tag">React</span>
+              <span className="skill-tag">TypeScript</span>
+              <span className="skill-tag">JavaScript (ES6+)</span>
+              <span className="skill-tag">Redux</span>
               <span className="skill-tag">Node.js</span>
+              <span className="skill-tag">Express</span>
               <span className="skill-tag">Python</span>
-              <span className="skill-tag">PostgreSQL</span>
-              <span className="skill-tag">Docker</span>
-              <span className="skill-tag">AWS</span>
+              <span className="skill-tag">MySQL</span>
+              <span className="skill-tag">Webpack</span>
+              <span className="skill-tag">Monorepo</span>
+              <span className="skill-tag">Micro-frontends</span>
+              <span className="skill-tag">CI/CD</span>
               <span className="skill-tag">Git</span>
+              <span className="skill-tag">HTML &amp; CSS</span>
             </div>
           </div>
           <div className="about-cards">
@@ -35,28 +49,28 @@ export default function About() {
               <span className="card-icon">🎓</span>
               <div>
                 <strong>Education</strong>
-                <p>B.S. Computer Science</p>
+                <p>M.Eng — University of Auckland (2026–2027)</p>
+              </div>
+            </div>
+            <div className="info-card">
+              <span className="card-icon">🎓</span>
+              <div>
+                <strong>Education</strong>
+                <p>B.Eng Software Engineering — Harbin Uni (2016–2020)</p>
               </div>
             </div>
             <div className="info-card">
               <span className="card-icon">💼</span>
               <div>
                 <strong>Experience</strong>
-                <p>3+ years in software development</p>
+                <p>4 yrs Front-End Engineer @ TikTok</p>
               </div>
             </div>
             <div className="info-card">
               <span className="card-icon">📍</span>
               <div>
                 <strong>Location</strong>
-                <p>San Francisco, CA</p>
-              </div>
-            </div>
-            <div className="info-card">
-              <span className="card-icon">🌐</span>
-              <div>
-                <strong>Languages</strong>
-                <p>English, Chinese</p>
+                <p>Auckland, New Zealand</p>
               </div>
             </div>
           </div>
