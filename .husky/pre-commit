@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Validate branch name: <type>/<short-description>
+BRANCH=$(git symbolic-ref --short HEAD)
+VALID_TYPES="feat|fix|docs|style|refactor|perf|test|chore|ci|build|revert"
+PATTERN="^($VALID_TYPES)/.+"
+
+if ! echo "$BRANCH" | grep -qE "$PATTERN"; then
+  echo ""
+  echo "ERROR: Branch name '$BRANCH' does not follow the required format."
+  echo "Expected: <type>/<short-description>"
+  echo "Allowed types: feat, fix, docs, style, refactor, perf, test, chore, ci, build, revert"
+  echo "Example: feat/add-dark-mode"
+  echo ""
+  exit 1
+fi
+
+npx lint-staged
