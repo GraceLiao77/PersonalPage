@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# $3 = 1 means branch checkout, 0 means file checkout — skip file checkouts
+[ "$3" = "1" ] || exit 0
+
+BRANCH=$(git symbolic-ref --short HEAD)
+
+# Skip protected base branches
+case "$BRANCH" in
+  main|master|develop) exit 0 ;;
+esac
+
+VALID_TYPES="feat|fix|docs|style|refactor|perf|test|chore|ci|build|revert"
+PATTERN="^($VALID_TYPES)/.+"
+
+if ! echo "$BRANCH" | grep -qE "$PATTERN"; then
+  echo ""
+  echo "WARNING: Branch name '$BRANCH' does not follow the required format."
+  echo "Expected: <type>/<short-description>"
+  echo "Allowed types: feat, fix, docs, style, refactor, perf, test, chore, ci, build, revert"
+  echo "Example: feat/add-dark-mode"
+  echo ""
+  echo "Rename it before pushing:"
+  echo "  git branch -m $BRANCH <type>/<short-description>"
+  echo ""
+fi
