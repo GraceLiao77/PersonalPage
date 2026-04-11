@@ -1,7 +1,8 @@
-import { useFadeIn } from '../hooks/useFadeIn'
+import { useFadeIn } from '../../hooks/useFadeIn';
+import './Projects.css';
 
 export default function Projects() {
-  const sectionRef = useFadeIn<HTMLElement>()
+  const sectionRef = useFadeIn<HTMLElement>();
 
   return (
     <section id="projects" ref={sectionRef}>
@@ -9,9 +10,7 @@ export default function Projects() {
         <h3 className="section-label">Projects</h3>
         <h2 className="section-title">Things I've built</h2>
         <div className="projects-grid">
-          <div className="project-card">
-            coming soon...
-          </div>
+          <div className="project-card">coming soon...</div>
 
           {/* <div className="project-card">
             <div className="project-header">
@@ -72,9 +71,8 @@ export default function Projects() {
               <span>React</span><span>Node.js</span><span>WebSockets</span><span>MongoDB</span>
             </div>
           </div> */}
-
         </div>
       </div>
     </section>
-  )
+  );
 }

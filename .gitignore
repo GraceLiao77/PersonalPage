@@ -2,3 +2,13 @@
 node_modules/
 dist/
 tsconfig.tsbuildinfo
+
+package-lock.json
+
+# Environment variables - Edit if necessary
+.env
+.env.*
+!.env.example
+!.env.test
+
+.agents/

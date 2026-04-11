@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion'
-import avatarImg from '../static/img/new-avatar.jpeg'
+import { motion } from 'framer-motion';
+import './Hero.css';
+import avatarImg from '../../static/img/new-avatar.jpeg';
 
 const draw = {
   hidden: { pathLength: 0, opacity: 0 },
@@ -11,7 +12,7 @@ const draw = {
       opacity: { duration: 0.5 },
     },
   },
-}
+};
 
 export default function Hero() {
   return (
@@ -72,9 +73,9 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.9, duration: 0.7 }}
           >
-            Master of Engineering student at the University of Auckland.
-            Previously 4 years as a front-end engineer at TikTok — building
-            large-scale systems, optimising performance, and mentoring junior devs.
+            Master of Engineering student at the University of Auckland. Previously 4 years as a
+            front-end engineer at TikTok — building large-scale systems, optimising performance, and
+            mentoring junior devs.
           </motion.p>
 
           <motion.div
@@ -83,8 +84,12 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.1, duration: 0.6 }}
           >
-            <a href="#projects" className="btn btn-primary">View Projects</a>
-            <a href="#contact" className="btn btn-ghost">Get in Touch</a>
+            <a href="#projects" className="btn btn-primary">
+              View Projects
+            </a>
+            <a href="#contact" className="btn btn-ghost">
+              Get in Touch
+            </a>
           </motion.div>
         </div>
 
@@ -109,5 +114,5 @@ export default function Hero() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

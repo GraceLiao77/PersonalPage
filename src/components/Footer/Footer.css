@@ -1,0 +1,10 @@
+/* ── Footer ── */
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--muted);
+  font-family: var(--font);
+  font-size: 1rem;
+  border-top: 3px solid var(--border);
+  background: var(--bg3);
+}

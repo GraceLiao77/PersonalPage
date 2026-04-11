@@ -1,7 +1,8 @@
-import { useFadeIn } from '../hooks/useFadeIn'
+import { useFadeIn } from '../../hooks/useFadeIn';
+import './About.css';
 
 export default function About() {
-  const sectionRef = useFadeIn<HTMLElement>()
+  const sectionRef = useFadeIn<HTMLElement>();
 
   return (
     <section id="about" ref={sectionRef}>
@@ -11,22 +12,20 @@ export default function About() {
         <div className="about-grid">
           <div className="about-text">
             <p>
-              I'm a Master of Engineering student at the University of Auckland
-              and a former front-end engineer at TikTok, where I spent four years
-              building large-scale e-commerce and data platforms.
+              I'm a Master of Engineering student at the University of Auckland and a former
+              front-end engineer at TikTok, where I spent four years building large-scale e-commerce
+              and data platforms.
             </p>
             <p>
-              My work ranged from shipping merchant-facing features and optimising
-              bundle performance to leading Monorepo migrations and mentoring junior
-              engineers through code reviews and knowledge-sharing sessions.
+              My work ranged from shipping merchant-facing features and optimising bundle
+              performance to leading Monorepo migrations and mentoring junior engineers through code
+              reviews and knowledge-sharing sessions.
             </p>
             <p>
-              I enjoy working at the intersection of clean architecture and great UX —
-              writing code that's fast, maintainable, and a pleasure to read.
+              I enjoy working at the intersection of clean architecture and great UX — writing code
+              that's fast, maintainable, and a pleasure to read.
             </p>
-            <p style={{ marginTop: '1.5rem', marginBottom: '0.4rem', fontSize: '0.9rem', color: 'var(--accent)', fontStyle: 'italic' }}>
-              ↓ tools I reach for
-            </p>
+            <p className="skills-hint">↓ tools I reach for</p>
             <div className="skills">
               <span className="skill-tag">React</span>
               <span className="skill-tag">TypeScript</span>
@@ -77,5 +76,5 @@ export default function About() {
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -1,0 +1,53 @@
+/* ── Contact ── */
+#contact {
+  background: var(--bg2);
+  border-top: 3px solid var(--border);
+}
+.contact-inner {
+  text-align: center;
+}
+.contact-desc {
+  color: var(--muted);
+  max-width: 500px;
+  margin: 0 auto 2.5rem;
+  font-size: 1.1rem;
+}
+.contact-hint {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-style: italic;
+}
+.contact-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: var(--bg3);
+  border: 3px solid var(--border);
+  padding: 0.85rem 1.8rem;
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  font-size: 1.05rem;
+  color: var(--text);
+  box-shadow: 4px 4px 0 var(--border);
+  transition: all 0.1s;
+}
+.contact-card:hover {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 2px 2px 0 var(--border);
+  transform: translate(2px, 2px);
+}
+.contact-card:nth-child(2):hover {
+  background: var(--text);
+  color: var(--bg);
+}
+.contact-card:nth-child(3):hover {
+  background: var(--accent2);
+  color: #fff;
+}

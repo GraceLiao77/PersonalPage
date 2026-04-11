@@ -1,0 +1,117 @@
+/* ── Projects ── */
+#projects {
+  background: var(--bg);
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+.project-card {
+  background: var(--bg3);
+  border: 3px solid var(--border);
+  border-radius: 15px 255px 15px 225px / 225px 15px 255px 15px;
+  padding: 1.6rem;
+  box-shadow: 4px 4px 0 var(--border);
+  transition:
+    transform 0.1s,
+    box-shadow 0.1s;
+  position: relative;
+  overflow: visible;
+}
+.project-card:nth-child(odd) {
+  transform: rotate(-0.6deg);
+}
+.project-card:nth-child(even) {
+  transform: rotate(0.7deg);
+}
+.project-card:hover {
+  transform: rotate(0) translate(2px, 2px) !important;
+  box-shadow: 2px 2px 0 var(--border);
+}
+
+.project-card.featured {
+  background: var(--yellow);
+  box-shadow: 8px 8px 0 var(--border);
+}
+.project-card.featured:hover {
+  box-shadow: 4px 4px 0 var(--border);
+  transform: rotate(0) translate(4px, 4px) !important;
+}
+/* Tape strip on featured */
+.project-card.featured::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(1.5deg);
+  width: 52px;
+  height: 16px;
+  background: rgba(130, 130, 130, 0.38);
+  border-radius: 2px;
+  z-index: 1;
+}
+.featured-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-family: var(--font);
+  font-size: 0.78rem;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.2rem 0.7rem;
+  border: 2px solid var(--border);
+  border-radius: 12px 3px 10px 3px / 3px 10px 3px 12px;
+  box-shadow: 2px 2px 0 var(--border);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.project-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.project-icon {
+  font-size: 1.8rem;
+}
+.project-links {
+  display: flex;
+  gap: 0.6rem;
+}
+.project-links a {
+  color: var(--muted);
+  transition: color 0.15s;
+  display: flex;
+  align-items: center;
+}
+.project-links a:hover {
+  color: var(--accent2);
+}
+.project-card h3 {
+  font-family: var(--heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: var(--text);
+}
+.project-card p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+  line-height: 1.6;
+}
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.project-tags span {
+  font-family: var(--font);
+  font-size: 0.85rem;
+  background: transparent;
+  border: 2px dashed var(--border);
+  color: var(--muted);
+  padding: 0.15rem 0.6rem;
+  border-radius: 4px 10px 4px 10px / 10px 4px 10px 4px;
+}
