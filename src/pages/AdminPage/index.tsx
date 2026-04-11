@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import SignInAndSignUp from '../SignInAndSignUp';
 import TaskManager from '../TaskManager';
 import { supabase } from '../../utils/supabase/client';
 
 export default function AdminPage() {
-  const [session, setSession] = useState(null);
+  const [session, setSession] = useState<any>(null);
 
   const getSessionData = async () => {
     const { data, error } = await supabase.auth.getSession();
