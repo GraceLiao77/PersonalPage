@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../../utils/supabase/client.ts';
 import './index.css';
+import { Session } from '@supabase/supabase-js';
 
 interface Task {
   id: number;
@@ -8,24 +9,37 @@ interface Task {
   description: string;
 }
 
-export default function TaskManager() {
+export default function TaskManager({ session }: { session: Session }) {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [editingId, setEditingId] = useState<number | null>(null);
 
   useEffect(() => {
+    const channel = supabase
+      .channel('tasks-channel')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'tasks' }, (payload) => {
+        const newTask = payload.new as Task;
+        setTasks((prev) => [...prev, newTask]);
+      })
+      .subscribe();
+
     fetchTasks();
+
+    return () => {
+      supabase.removeChannel(channel); // 👈 cleanup
+    };
   }, []);
 
   async function fetchTasks() {
     const { data } = await supabase.from('tasks').select('*').order('id');
+    console.log(data, 'data-----');
     if (data) setTasks(data);
   }
 
   async function addTask() {
     if (!title.trim()) return;
-    await supabase.from('tasks').insert({ title, description });
+    await supabase.from('tasks').insert({ title, description, email: session.user.email });
     setTitle('');
     setDescription('');
     fetchTasks();

@@ -38,7 +38,7 @@ export default function AdminPage() {
         <SignInAndSignUp />
       ) : (
         <>
-          <TaskManager />
+          <TaskManager session={session} />
           <button onClick={exit}>Log Out</button>
         </>
       )}

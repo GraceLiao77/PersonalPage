@@ -13,7 +13,11 @@ export default function SignInAndSignUp() {
     setError('');
 
     if (isSignUp) {
-      const { error } = await supabase.auth.signUp({ email, password });
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: { emailRedirectTo: window.location.origin },
+      });
       if (error) setError(error.message);
     } else {
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
