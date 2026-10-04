@@ -1,19 +1,26 @@
 import Nav from './components/Nav/Nav';
 import Hero from './components/Hero/Hero';
-import About from './components/About/About';
-import Projects from './components/Projects/Projects';
-import Contact from './components/Contact/Contact';
+import Works from './components/Works/Works';
+import Cat from './components/Cat/Cat';
 import Footer from './components/Footer/Footer';
+import { useActiveTab } from './hooks/useActiveTab';
 
 export default function App() {
+  const [tab, selectTab] = useActiveTab();
+
   return (
     <>
-      <Nav />
-      <Hero />
-      <About />
-      <Projects />
-      <Contact />
-      <Footer />
+      <div className="bg-dots" />
+      <div className="bg-fade" />
+      <div className="col">
+        <Nav active={tab} />
+        <main>
+          <Hero />
+          <Works active={tab} onSelect={selectTab} />
+        </main>
+        <Footer />
+      </div>
+      <Cat />
     </>
   );
 }

@@ -16,43 +16,45 @@ npm run preview  # locally preview the production build
 
 ## Architecture
 
-Single-page portfolio. All source lives in `src/`.
+Single-page portfolio (`/`) plus a Supabase admin area (`/test`, `src/pages/`). Routing lives in `main.tsx`.
 
 ```
 src/
-  main.tsx              — Vite entry, mounts <App /> into #root
-  App.tsx               — composes all sections in order
-  index.css             — global styles (dark theme, CSS custom properties)
+  main.tsx              — Vite entry, BrowserRouter: / → <App />, /test → AdminPage
+  App.tsx               — background layers + .col column (Nav, Hero, Works, Footer) + corner Cat
+  index.css             — light/dark tokens, dotted background, .col (64% wide, max 1080px; 80% ≤1280px; full ≤720px), .stagger, keyframes
   hooks/
-    useFadeIn.ts        — IntersectionObserver hook; adds fade-in/visible classes on scroll
+    useActiveTab.ts     — shared Works tab state (used by App → Nav + Works); syncs URL hash and
+                          turns any in-page #projects/#about/#contact link into switch-tab + scroll
   components/
-    Nav.tsx             — fixed nav with scroll-based active link highlighting
-    Hero.tsx
-    About.tsx
-    Projects.tsx
-    Contact.tsx
-    Footer.tsx
+    Nav/                — sticky frosted header: ~/grace, section links, GitHub, theme toggle
+    Hero/               — centered stack: breathing avatar, title, typewriter subtitle, links, frameless Now
+    Works/              — controlled tabbed section (Projects / About / Contact), `id="works"`
+    Projects/ About/ Contact/ — panel contents rendered inside Works
+    Cat/                — fixed bottom-right chibi SVG kitten (blue & white British Shorthair); pupils follow pointer, click → bubble; Halloween pumpkin + bat gated by isHalloweenSeason()
+    Footer/
 ```
 
-Google Fonts (`Inter`, `JetBrains Mono`) are loaded via `<link>` tags in the root `index.html`.
+No web fonts: system sans stack + system mono stack. Mono is used for labels, nav, tags and the subtitle.
 
 ## Design System
 
-CSS custom properties defined in `:root` in `src/index.css`:
+Clean, light-first with a dark theme. Tokens in `:root` of `src/index.css`; the dark palette applies via `prefers-color-scheme` or `html[data-theme="dark"]` (set by the Nav toggle, persisted in `localStorage`, applied pre-paint by the inline script in `index.html`).
 
-- `--bg / --bg2 / --bg3` — layered dark backgrounds
-- `--accent` (`#6c63ff`) / `--accent2` (violet) — primary brand colors
-- `--muted` — secondary text
-- `--mono` — JetBrains Mono, used for labels, tags, and the nav logo
+- `--bg`, `--card`, `--ink`, `--line` — surfaces, headings, hairlines
+- `--t2` — the one body-text color everywhere (paragraphs, lists, descriptions); `--t3` — meta only (dates, labels, counters)
+- `--blue` — the single accent (active tab line, links, caret); `--hl` — soft accent tint for hovers
+- `--ease` `cubic-bezier(.19,1,.22,1)` for nearly all transitions; `--pop` for springy motion
+- The cat's ink/fur colors are hard-coded so it reads like a printed sticker in both themes
+- Legacy aliases (`--border`, `--accent`, `--font`…) remain only for the `/test` pages
 
-Interactive elements use `transition: all 0.2s` and `translateY(-2px)` hover lifts consistently.
+## Animations
 
-## Scroll Animations
-
-`useFadeIn.ts` attaches an `IntersectionObserver` (threshold `0.12`) to elements matching `.project-card, .info-card, .contact-card, .section-title, .about-text p`. Call it inside any component that contains those elements.
+Pure CSS, no scroll observers. Hero children fade up in sequence; panel children get `className="stagger"` and rise in sequence each time a tab mounts (`.stagger:nth-child(n)` delays in `index.css`). A global `prefers-reduced-motion` rule disables them.
 
 ## Adding Content
 
-- **New project card:** add a new `<div className="project-card">` block in `Projects.tsx`. Use `.featured` modifier + `<div className="featured-badge">Featured</div>` to highlight one.
-- **New skill tag:** add `<span className="skill-tag">...</span>` inside `.skills` in `About.tsx`.
-- **New contact link:** add a `<a className="contact-card">` in `Contact.tsx`.
+- **New project:** add an entry to `PROJECTS` in `Projects.tsx`; give it a visual in `Stage`.
+- **About content:** edit `EXPERIENCE` / `EDUCATION` / `STACK` in `About.tsx` (article-style typography in `About.css`: `|` h2 bars, blockquote intros, `code` highlights).
+- **New contact link:** add to `LINKS` in `Contact.tsx`.
+- **New tab:** add the id to `TAB_IDS` in `hooks/useActiveTab.ts`, then the panel to `TABS` in `Works.tsx` (the header nav reads `TAB_IDS`).

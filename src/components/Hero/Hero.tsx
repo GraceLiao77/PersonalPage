@@ -1,118 +1,96 @@
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import './Hero.css';
 import avatarImg from '../../static/img/new-avatar.jpeg';
+import { EmailIcon, LinkedInIcon } from '../../static/content/Icon';
 
-const draw = {
-  hidden: { pathLength: 0, opacity: 0 },
-  visible: {
-    pathLength: 1,
-    opacity: 1,
-    transition: {
-      pathLength: { duration: 2.5, ease: [0.43, 0.13, 0.23, 0.96] as const },
-      opacity: { duration: 0.5 },
-    },
-  },
-};
+const SUBTITLE = 'Software Engineer · Full-Stack & AI · Auckland, NZ';
+
+// Types the subtitle out one character at a time, like a terminal
+function useTypewriter(text: string, startDelay = 700, speed = 38) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setCount(text.length);
+      return;
+    }
+    let timer = window.setTimeout(function tick() {
+      setCount((c) => {
+        if (c + 1 < text.length) timer = window.setTimeout(tick, speed);
+        return c + 1;
+      });
+    }, startDelay);
+    return () => window.clearTimeout(timer);
+  }, [text, startDelay, speed]);
+
+  return text.slice(0, count);
+}
 
 export default function Hero() {
+  const typed = useTypewriter(SUBTITLE);
+
   return (
-    <section id="hero">
-      <div className="hero-inner">
-        <div className="hero-text">
-          <motion.p
-            className="greeting"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Hi, I'm
-          </motion.p>
-
-          <div className="hero-name-wrap">
-            <motion.svg
-              viewBox="0 0 520 140"
-              className="hero-name-circle"
-              initial="hidden"
-              animate="visible"
-            >
-              <motion.path
-                d="M 470 35
-                   C 530 95, 450 125, 260 128
-                   C 70 128, 20 100, 20 70
-                   C 20 30, 90 12, 260 12
-                   C 430 12, 490 55, 470 35"
-                fill="none"
-                strokeWidth="7"
-                stroke="var(--border)"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                variants={draw}
-              />
-            </motion.svg>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.7 }}
-            >
-              Grace
-            </motion.h1>
-          </div>
-
-          <motion.h2
-            className="subtitle"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-          >
-            Front-End Engineer &amp; M.Eng Student
-          </motion.h2>
-
-          <motion.p
-            className="bio"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.9, duration: 0.7 }}
-          >
-            Master of Engineering student at the University of Auckland. Previously 4 years as a
-            front-end engineer at TikTok — building large-scale systems, optimising performance, and
-            mentoring junior devs.
-          </motion.p>
-
-          <motion.div
-            className="hero-actions"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.1, duration: 0.6 }}
-          >
-            <a href="#projects" className="btn btn-primary">
-              View Projects
-            </a>
-            <a href="#contact" className="btn btn-ghost">
-              Get in Touch
-            </a>
-          </motion.div>
-        </div>
-
-        <motion.div
-          className="hero-avatar"
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.4, duration: 0.8, ease: 'easeOut' }}
-        >
-          <div className="avatar-ring">
-            <img src={avatarImg} alt="Grace Liao" className="avatar-img" />
-          </div>
-          <motion.div
-            className="status-badge"
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.3, duration: 0.5 }}
-          >
-            <span className="dot"></span>
-            Open to opportunities
-          </motion.div>
-        </motion.div>
+    <div className="hero" id="top">
+      <div className="hero-avatar">
+        <img src={avatarImg} alt="Grace Liao" />
       </div>
-    </section>
+      <div className="hero-text">
+        <h1>
+          Hi, I'm Grace <span className="wave">👋</span>
+        </h1>
+
+        <p className="subtitle" aria-label={SUBTITLE}>
+          {/* Invisible full text reserves the final width so the layout never shifts while typing */}
+          <span className="subtitle-sizer" aria-hidden="true">
+            {SUBTITLE}
+            <span className="caret" />
+          </span>
+          <span className="subtitle-typed" aria-hidden="true">
+            {typed}
+            <span className="caret" />
+          </span>
+        </p>
+
+        <div className="hero-links">
+          <a
+            href="https://www.linkedin.com/in/grace-liao-6723323a7/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <LinkedInIcon />
+            LinkedIn
+          </a>
+          <a href="mailto:liaojin111@gmail.com">
+            <EmailIcon />
+            Email
+          </a>
+          <a href="#projects">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect x="3" y="7" width="18" height="13" rx="2" />
+              <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+            </svg>
+            Portfolio
+          </a>
+        </div>
+      </div>
+
+      <div className="now">
+        <span className="now-label">
+          <span className="now-dot" />
+          Now
+        </span>
+        <p>
+          Master of Software Engineering at the University of Auckland (graduating November 2026),
+          building full-stack web apps and AI-powered tools.
+        </p>
+      </div>
+    </div>
   );
 }

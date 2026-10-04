@@ -1,78 +1,67 @@
-import { useFadeIn } from '../../hooks/useFadeIn';
 import './Projects.css';
 
-export default function Projects() {
-  const sectionRef = useFadeIn<HTMLElement>();
+type Project = {
+  title: string;
+  description: string;
+  cta: string;
+  href?: string;
+  tags: string[];
+};
 
+const PROJECTS: Project[] = [
+  {
+    title: 'Coming soon',
+    description: 'Something new is on the workbench. Check back shortly.',
+    cta: 'In progress',
+    tags: ['WIP'],
+  },
+];
+
+// Visual placeholder until a project has its own preview
+function Stage() {
   return (
-    <section id="projects" ref={sectionRef}>
-      <div className="section-inner">
-        <h3 className="section-label">Projects</h3>
-        <h2 className="section-title">Things I've built</h2>
-        <div className="projects-grid">
-          <div className="project-card">coming soon...</div>
+    <div className="stage stage-empty" aria-hidden="true">
+      <span>…</span>
+    </div>
+  );
+}
 
-          {/* <div className="project-card">
-            <div className="project-header">
-              <span className="project-icon">🤖</span>
-              <div className="project-links">
-                <a href="#" aria-label="GitHub"><GitHubIcon /></a>
-                <a href="#" aria-label="Live Demo"><ExternalLinkIcon /></a>
-              </div>
+export default function Projects() {
+  return (
+    <div className="plist">
+      {PROJECTS.map((p, i) => {
+        const info = (
+          <>
+            <h3>{p.title}</h3>
+            <p>{p.description}</p>
+            <div className="ptags">
+              {p.tags.map((t) => (
+                <span key={t}>{t}</span>
+              ))}
             </div>
-            <h3>AI Chat Assistant</h3>
-            <p>A real-time chat application powered by Claude API. Features streaming responses, conversation history, and a clean, minimal UI.</p>
-            <div className="project-tags">
-              <span>React</span><span>TypeScript</span><span>Claude API</span>
+            <span className="go">
+              {p.cta} <span className="arr">→</span>
+            </span>
+          </>
+        );
+        return (
+          <div className="pcard stagger" key={p.title}>
+            <Stage />
+            <div className="pinfo">
+              <span className="pnum" aria-hidden="true">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              {p.href ? (
+                <a className="pinfo-main" href={p.href} target="_blank" rel="noopener noreferrer">
+                  {info}
+                </a>
+              ) : (
+                <div className="pinfo-main">{info}</div>
+              )}
             </div>
           </div>
-
-          <div className="project-card featured">
-            <div className="featured-badge">Featured</div>
-            <div className="project-header">
-              <span className="project-icon">📊</span>
-              <div className="project-links">
-                <a href="#" aria-label="GitHub"><GitHubIcon /></a>
-                <a href="#" aria-label="Live Demo"><ExternalLinkIcon /></a>
-              </div>
-            </div>
-            <h3>DevMetrics Dashboard</h3>
-            <p>A developer analytics dashboard that aggregates GitHub activity, code quality metrics, and deployment stats into one unified view.</p>
-            <div className="project-tags">
-              <span>Next.js</span><span>PostgreSQL</span><span>GitHub API</span><span>Recharts</span>
-            </div>
-          </div>
-
-          <div className="project-card">
-            <div className="project-header">
-              <span className="project-icon">⚡</span>
-              <div className="project-links">
-                <a href="#" aria-label="GitHub"><GitHubIcon /></a>
-                <a href="#" aria-label="Live Demo"><ExternalLinkIcon /></a>
-              </div>
-            </div>
-            <h3>FastAPI Starter Kit</h3>
-            <p>A production-ready FastAPI boilerplate with JWT auth, PostgreSQL integration, Docker setup, and automated tests out of the box.</p>
-            <div className="project-tags">
-              <span>Python</span><span>FastAPI</span><span>Docker</span><span>PostgreSQL</span>
-            </div>
-          </div>
-
-          <div className="project-card">
-            <div className="project-header">
-              <span className="project-icon">🗂️</span>
-              <div className="project-links">
-                <a href="#" aria-label="GitHub"><GitHubIcon /></a>
-              </div>
-            </div>
-            <h3>Notion Clone</h3>
-            <p>A collaborative note-taking app with rich text editing, nested pages, real-time sync, and a beautiful block-based editor.</p>
-            <div className="project-tags">
-              <span>React</span><span>Node.js</span><span>WebSockets</span><span>MongoDB</span>
-            </div>
-          </div> */}
-        </div>
-      </div>
-    </section>
+        );
+      })}
+    </div>
   );
 }

@@ -1,0 +1,105 @@
+/* ── Tabbed works section ── */
+.works {
+  scroll-margin-top: 64px;
+}
+
+.works-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--line);
+}
+
+.tabs {
+  display: flex;
+  gap: 32px;
+}
+.tab {
+  position: relative;
+  appearance: none;
+  padding: 0 0 14px;
+  font-family: inherit;
+  font-size: clamp(20px, 3.2vw, 26px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: var(--t3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.4s var(--ease);
+}
+/* Accent line that grows under the active tab, sitting on the divider */
+.tab::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease);
+}
+.tab:hover {
+  color: var(--t2);
+}
+.tab.active {
+  color: var(--ink);
+}
+.tab.active::after {
+  transform: scaleX(1);
+}
+.tab:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.tab-count {
+  padding-bottom: 16px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--t3);
+}
+
+.work-module {
+  animation: panelin 0.9s var(--ease);
+}
+@keyframes panelin {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Shared "go →" link used across panels */
+.go {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--t3);
+  transition: color 0.5s var(--ease);
+}
+.go .arr {
+  transition: transform 0.7s var(--ease);
+}
+
+@media (max-width: 720px) {
+  .tabs {
+    gap: 22px;
+  }
+  .tab-count {
+    display: none;
+  }
+}

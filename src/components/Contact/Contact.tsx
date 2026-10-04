@@ -1,36 +1,51 @@
-import { useFadeIn } from '../../hooks/useFadeIn';
 import './Contact.css';
 import { EmailIcon, GitHubContactIcon, LinkedInIcon } from '../../static/content/Icon';
 
-export default function Contact() {
-  const sectionRef = useFadeIn<HTMLElement>();
+const LINKS = [
+  {
+    label: 'Email',
+    value: 'liaojin111@gmail.com',
+    href: 'mailto:liaojin111@gmail.com',
+    Icon: EmailIcon,
+  },
+  {
+    label: 'GitHub',
+    value: 'GraceLiao77',
+    href: 'https://github.com/GraceLiao77',
+    Icon: GitHubContactIcon,
+  },
+  {
+    label: 'LinkedIn',
+    value: 'grace-liao',
+    href: 'https://www.linkedin.com/in/grace-liao-6723323a7/',
+    Icon: LinkedInIcon,
+  },
+];
 
+export default function Contact() {
   return (
-    <section id="contact" ref={sectionRef}>
-      <div className="section-inner contact-inner">
-        <h3 className="section-label">Contact</h3>
-        <h2 className="section-title">Let's connect</h2>
-        <p className="contact-desc">
-          I'm always open to interesting conversations, collaborations, or just a friendly chat.
-          Drop me a message — I'll get back to you.
-        </p>
-        <p className="contact-hint">↓ pick your favourite channel</p>
-        <div className="contact-links">
-          <a href="mailto:liaojin111@gmail.com" className="contact-card">
-            <EmailIcon />
-          </a>
-          <a href="https://github.com/GraceLiao77" target="_blank" className="contact-card">
-            <GitHubContactIcon />
-          </a>
+    <div className="contact">
+      <p className="contact-desc stagger">
+        I'm always open to interesting conversations, collaborations, or just a friendly chat. Drop
+        me a message and I'll get back to you.
+      </p>
+      <div className="contact-links stagger">
+        {LINKS.map(({ label, value, href, Icon }) => (
           <a
-            href="https://www.linkedin.com/in/grace-liao-6723323a7/"
-            target="_blank"
-            className="contact-card"
+            key={label}
+            href={href}
+            className="contact-row"
+            {...(href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}
           >
-            <LinkedInIcon />
+            <span className="contact-icon">
+              <Icon />
+            </span>
+            <span className="contact-label">{label}</span>
+            <span className="contact-value">{value}</span>
+            <span className="arr">→</span>
           </a>
-        </div>
+        ))}
       </div>
-    </section>
+    </div>
   );
 }
