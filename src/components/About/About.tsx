@@ -33,8 +33,8 @@ const EXPERIENCE: Role[] = [
         <strong>all new table pages</strong> on Industry 360 used it.
       </>,
       <>
-        Led the move to a <strong>pnpm workspace monorepo</strong>, and was frontend lead across two
-        product lines with <strong>6+ backend engineers</strong>.
+        Owned the migration to a <strong>pnpm workspace monorepo</strong> proposed by the team lead,
+        and was frontend lead across two product lines with <strong>6+ backend engineers</strong>.
       </>,
     ],
   },
