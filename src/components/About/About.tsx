@@ -35,7 +35,8 @@ const EXPERIENCE: Role[] = [
       </>,
       <>
         Owned the migration to a <strong>pnpm workspace monorepo</strong> proposed by the team lead,
-        and was frontend lead across two product lines with <strong>6+ backend engineers</strong>.
+        fixing <strong>phantom dependencies</strong> and <strong>duplicate package versions</strong>{' '}
+        across packages.
       </>,
     ],
   },
