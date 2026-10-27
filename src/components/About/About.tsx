@@ -29,8 +29,9 @@ const EXPERIENCE: Role[] = [
         and lazy loading.
       </>,
       <>
-        Owned core components of the <strong>EcopUI</strong> library; within about three months,{' '}
-        <strong>all new table pages</strong> on Industry 360 used it.
+        Proposed and owned the <strong>EcopUI</strong> business component library, starting with a
+        core table; within a month <strong>all new table pages</strong> on Industry 360 used it,
+        with <strong>300+ reuses</strong> and about <strong>60% fewer</strong> urgent fix requests.
       </>,
       <>
         Owned the migration to a <strong>pnpm workspace monorepo</strong> proposed by the team lead,
@@ -63,7 +64,8 @@ const EXPERIENCE: Role[] = [
         hours, which led the new project to adopt <strong>TypeScript</strong>.
       </>,
       <>
-        Introduced <strong>ESLint and Git Hooks</strong> to a team with no code standards.
+        Introduced <strong>ESLint and Git Hooks</strong> to a team with no code standards: Husky
+        checks branch names before each commit, and CI enforces PR conventions.
       </>,
     ],
   },
