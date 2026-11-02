@@ -148,6 +148,48 @@
   transform: rotate(9deg) translate(10px, 6px);
 }
 
+/* Browser window — a web app screenshot in a minimal frame */
+.stage-browser {
+  display: grid;
+  place-items: center;
+}
+.browser {
+  width: 88%;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 14px 30px -14px #00000066;
+  transition: transform 0.7s var(--ease);
+}
+.pcard:hover .browser {
+  transform: translateY(-3px) scale(1.02);
+}
+.browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 10px;
+  background: #f3f3f5;
+  border-bottom: 1px solid #e4e4e8;
+}
+.browser-bar i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d4d4d8;
+}
+.browser-bar span {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: #8a8e98;
+}
+.browser img {
+  display: block;
+  width: 100%;
+}
+
 /* Stage placeholder */
 .stage-empty {
   display: grid;

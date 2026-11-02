@@ -2,6 +2,7 @@ import './Projects.css';
 import rcEvents from '../../assets/repair-cafe/events.png';
 import rcOverview from '../../assets/repair-cafe/overview.png';
 import rcImpact from '../../assets/repair-cafe/impact.png';
+import icInterview from '../../assets/interview-coach/interview.png';
 
 type Project = {
   title: string;
@@ -53,7 +54,34 @@ function RepairCafePreview() {
   );
 }
 
+// The Mock Interview page in a small browser window
+function InterviewCoachPreview() {
+  return (
+    <div className="stage stage-browser" aria-hidden="true">
+      <div className="browser">
+        <div className="browser-bar">
+          <i />
+          <i />
+          <i />
+          <span>interview-coach</span>
+        </div>
+        <img src={icInterview} alt="" loading="lazy" />
+      </div>
+    </div>
+  );
+}
+
 const PROJECTS: Project[] = [
+  {
+    title: 'Interview Coach',
+    description:
+      'A mock interview platform for engineers who interview in English as a second language. Paste a job description, get tiered questions, and answer out loud: Groq-hosted Whisper transcribes, then Claude scores Content and Language separately, names the error pattern (e.g. Chinese-L1 article drops) and rewrites your answer. Prompt changes are gated by an eval harness with saved baselines.',
+    cta: 'View on GitHub',
+    href: 'https://github.com/GraceLiao77/interview-coach',
+    tags: ['React', 'Express', 'Prisma', 'PostgreSQL', 'Claude API', 'Whisper'],
+    created: '2026.9',
+    Preview: InterviewCoachPreview,
+  },
   {
     title: 'Lecture Summariser',
     description:
